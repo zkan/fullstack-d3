@@ -4,12 +4,26 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "d3": "^6.5.0",
-    "parcel-bundler": "^1.12.4"
+    "d3": "^6.5.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.5.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "browserslist": [
+    "since 2017-06"
+  ],
+  "staticFiles": {
+    "staticPath": [
+      {
+        "staticPath": "data",
+        "staticOutDir": "data/"
+      }
+    ]
   },
   "author": "Kan Ouivirach",
   "license": "MIT"
