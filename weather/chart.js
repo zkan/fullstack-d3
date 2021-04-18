@@ -52,6 +52,14 @@ async function drawLineChart() {
   console.log(yScale(0))
   console.log(yScale(50))
   console.log(yScale(100))
+
+  const freezingTemperaturePlacement = yScale(32)
+  const freezingTemperatures = bounds.append('rect')
+      .attr('x', 0)
+      .attr('width', dimensions.boundedWidth)
+      .attr('y', freezingTemperaturePlacement)
+      .attr('height', dimensions.boundedHeight - freezingTemperaturePlacement)
+      .attr('fill', '#e0f3f3')
 }
 
 drawLineChart()
