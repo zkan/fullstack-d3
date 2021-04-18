@@ -7,7 +7,7 @@ async function drawLineChart() {
   const yAccessor = d => +d['num_colors']
   console.log(yAccessor(data[0]))
 
-  const xAccessor = d => d['']
+  const xAccessor = d => +d['']
   console.log(xAccessor(data[0]))
 
   let dimensions = {
