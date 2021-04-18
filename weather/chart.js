@@ -43,6 +43,15 @@ async function drawLineChart() {
         dimensions.margins.top
       }px)`)
   console.log(bounds)
+
+  const yScale = d3.scaleLinear()
+      .domain([0, 100]) // input space: minimum and maximum value
+      .range([dimensions.boundedHeight, 0]) // output space
+
+  // This means that if we have a 0, we will plot a point yScale(0) from the top
+  console.log(yScale(0))
+  console.log(yScale(50))
+  console.log(yScale(100))
 }
 
 drawLineChart()
