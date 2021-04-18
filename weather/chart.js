@@ -22,11 +22,18 @@ async function drawLineChart() {
       left: 60,
     }
   }
-  dimensions.boundedWidth = dimensions.width - dimensions.margins.left - dimensions.margins.right
-  dimensions.boundedHeight = dimensions.height - dimensions.margins.top - dimensions.margins.bottom
+  dimensions.boundedWidth = dimensions.width
+    - dimensions.margins.left
+    - dimensions.margins.right
+  dimensions.boundedHeight = dimensions.height
+    - dimensions.margins.top
+    - dimensions.margins.bottom
   console.log(dimensions)
 
   const wrapper = d3.select('#wrapper')
+    .append('svg')
+      .attr('width', dimensions.width)
+      .attr('height', dimensions.height)
   console.log(wrapper)
 }
 
