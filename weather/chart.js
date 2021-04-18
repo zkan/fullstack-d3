@@ -35,6 +35,14 @@ async function drawLineChart() {
       .attr('width', dimensions.width)
       .attr('height', dimensions.height)
   console.log(wrapper)
+
+  const bounds = wrapper.append('g')
+      .style('transform', `translate(${
+        dimensions.margins.left
+      }px, ${
+        dimensions.margins.top
+      }px)`)
+  console.log(bounds)
 }
 
 drawLineChart()
