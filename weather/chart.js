@@ -60,6 +60,21 @@ async function drawLineChart() {
       .attr('y', freezingTemperaturePlacement)
       .attr('height', dimensions.boundedHeight - freezingTemperaturePlacement)
       .attr('fill', '#e0f3f3')
+
+  const xScale = d3.scaleTime()
+      .domain(d3.extent(data, xAccessor))
+      .range([0, dimensions.boundedWidth])
+
+  const lineGenerator = d3.line()
+      .x(d => xScale(xAccessor(d)))
+      .y(d => yScale(yAccessor(d)))
+  console.log(lineGenerator)
+
+  const line = bounds.append('path')
+      .attr('d', lineGenerator(data))
+      .attr('fill', 'none')
+      .attr('stroke', '#af9358')
+      .attr('stroke-width', 2)
 }
 
 drawLineChart()
