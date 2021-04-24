@@ -329,7 +329,9 @@ async function drawBars() {
       .scale(xScale)
   const xAxis = bounds.append('g')
       .call(xAxisGenerator)
-      .style('transform', `translateY(${dimensions.boundedHeight}px)`)
+      .style('transform', `translateY(${
+        dimensions.boundedHeight
+      }px)`)
 
   const xAxisLabel = xAxis.append('text')
       .attr('x', dimensions.boundedWidth / 2)
