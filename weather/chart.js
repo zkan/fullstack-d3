@@ -120,8 +120,8 @@ async function drawScatter() {
     margin: {
       top: 10,
       right: 10,
-      bottom: 15,
-      left: 15,
+      bottom: 50,
+      left: 50,
     }
   }
   dimensions.boundedWidth = dimensions.width
@@ -135,7 +135,7 @@ async function drawScatter() {
     .append('svg')
     .attr('width', dimensions.width)
     .attr('height', dimensions.height)
-    .style('border', '1px solid')
+    // .style('border', '1px solid')
 
   const bounds = wrapper.append('g')
     .style('transform', `translate(${
@@ -177,6 +177,38 @@ async function drawScatter() {
         .attr('r', 5)
         .attr('fill', 'cornflowerblue')
   console.log(dots)
+
+  const xAxisGenerator = d3.axisBottom()
+    .scale(xScale)
+
+  const xAxis = bounds.append('g')
+      .call(xAxisGenerator)
+      .style('transform', `translateY(${
+        dimensions.boundedHeight
+      }px)`)
+
+  const xAxisLabel = xAxis.append('text')
+      .attr('x', dimensions.boundedWidth / 2)
+      .attr('y', dimensions.margin.bottom - 10)
+      .attr('fill', 'black')
+      .style('font-size', '1.4em')
+      .html('Dew point (&deg;F)')
+
+  const yAxisGenerator = d3.axisLeft()
+    .scale(yScale)
+    .ticks(4)
+
+  const yAxis = bounds.append('g')
+      .call(yAxisGenerator)
+
+  const yAxisLabel = yAxis.append('text')
+      .attr('x', -dimensions.boundedHeight / 2)
+      .attr('y', -dimensions.margin.left + 10)
+      .style('fill', 'black')
+      .text('Relative humidity')
+      .style('font-size', '1.4em')
+      .style('transform', 'rotate(-90deg)')
+      .style('text-anchor', 'middle')
 }
 
 drawLineChart()
