@@ -249,6 +249,12 @@ async function drawBars() {
         .attr('width', dimensions.width)
         .attr('height', dimensions.height)
 
+    // For screen reader to know this is a figure
+    wrapper.attr('role', 'figure')
+        .attr('tabindex', '0')
+      .append('title')
+        .text(`Histogram looking at the distribution of ${metric} over 2019`)
+
     const bounds = wrapper.append('g')
         .style('transform', `translate(${
           dimensions.margin.left
@@ -277,10 +283,24 @@ async function drawBars() {
     console.log(yScale.domain())
 
     const binsGroup = bounds.append('g')
+        .attr('tabindex', '0')
+        .attr('role', 'list')
+        .attr('aria-label', 'histogram bars')
 
     const binGroups = binsGroup.selectAll('g')
         .data(bins)
         .join('g')
+          .attr('tabindex', '0')
+          .attr('role', 'listitem')
+          .attr('aria-label', d => `There were ${
+            yAccessor(d)
+          } days between ${
+            d.x0
+          } and ${
+            d.x1
+          } ${
+            metric
+          } levels`)
 
     const barPadding = 1
 
@@ -325,6 +345,8 @@ async function drawBars() {
         .style('font-family', 'sans-serif')
         .style('fill', 'maroon')
         .style('font-size', '12px')
+        .attr('role', 'presentation')
+        .attr('aria-hidden', true)
 
     const xAxisGenerator = d3.axisBottom()
         .scale(xScale)
@@ -333,6 +355,8 @@ async function drawBars() {
         .style('transform', `translateY(${
           dimensions.boundedHeight
         }px)`)
+        .attr('role', 'presentation')
+        .attr('aria-hidden', true)
 
     const xAxisLabel = xAxis.append('text')
         .attr('x', dimensions.boundedWidth / 2)
@@ -340,6 +364,8 @@ async function drawBars() {
         .attr('fill', 'black')
         .style('font-size', '1.4em')
         .text(metric)
+        .attr('role', 'presentation')
+        .attr('aria-hidden', true)
   }
 
   const metrics = [
