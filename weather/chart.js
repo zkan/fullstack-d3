@@ -304,6 +304,12 @@ async function drawBars() {
       .style('fill', '#666')
       .style('font-size', '12px')
       .style('font-family', 'sans-serif')
+
+  const xAxisGenerator = d3.axisBottom()
+      .scale(xScale)
+  const xAxis = bounds.append('g')
+      .call(xAxisGenerator)
+      .style('transform', `translateY(${dimensions.boundedHeight}px)`)
 }
 
 drawLineChart()
