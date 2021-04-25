@@ -95,16 +95,19 @@ async function drawBars() {
 
     const barText = binGroups.select("text")
         .attr("x", d => xScale(d.x0) + (xScale(d.x1) - xScale(d.x0)) / 2)
-        .attr("y", d => yScale(yAccessor(d)) - 5)
         .text(yAccessor)
+        .style("transform", d => `translateY(${
+           yScale(yAccessor(d)) - 5
+        }px)`)
 
     const mean = d3.mean(dataset, metricAccessor)
 
     const meanLine = bounds.selectAll(".mean")
-        .attr("x1", xScale(mean))
-        .attr("x2", xScale(mean))
         .attr("y1", -20)
         .attr("y2", dimensions.boundedHeight)
+        .style("transform", `translateX(${
+          xScale(mean)
+        }px)`)
 
     // 6. Draw peripherals
 

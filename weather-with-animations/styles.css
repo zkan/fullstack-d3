@@ -1,5 +1,7 @@
 .bin rect {
   fill: cornflowerblue;
+  transition: height 1s ease-out,
+              y 1s ease-out;
 }
 
 .bin text {
@@ -7,11 +9,13 @@
   fill: darkgrey;
   font-size: 12px;
   font-family: sans-serif;
+  transition: all 1s ease-out;
 }
 
 .mean {
   stroke: maroon;
   stroke-dasharray: 2px 4px;
+  transition: all 1s ease-out;
 }
 
 .x-axis-label {
