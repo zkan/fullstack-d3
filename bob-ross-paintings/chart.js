@@ -81,4 +81,81 @@ async function drawLineChart() {
       }px)`)
 }
 
+async function drawBars() {
+  const data = await d3.csv('./data/bob_ross_paintings.csv')
+  console.log(data)
+
+  const xAccessor = d => +d['num_colors']
+  console.log(xAccessor(data[0]))
+
+  const yAccessor = d => d.length
+
+  const width = 600
+  const dimensions = {
+    width,
+    height: width * 0.6,
+    margin: {
+      top: 30,
+      right: 10,
+      bottom: 50,
+      left: 50,
+    }
+  }
+  dimensions.boundedWidth = dimensions.width
+    - dimensions.margin.left
+    - dimensions.margin.right
+  dimensions.boundedHeight = dimensions.height
+    - dimensions.margin.top
+    - dimensions.margin.bottom
+
+  const wrapper = d3.select('#wrapper-bars')
+    .append('svg')
+      .attr('width', dimensions.width)
+      .attr('height', dimensions.height)
+
+  const bounds = wrapper.append('g')
+    .style('transform', `translate(${
+      dimensions.margin.left
+    }px, ${
+      dimensions.margin.top
+    }px`)
+
+  const xScale = d3.scaleLinear()
+      .domain(d3.extent(data, xAccessor))
+      .range([0, dimensions.boundedWidth])
+      .nice()
+  console.log('xScale domain: ', xScale.domain())
+  console.log('xAccessor data[0]: ', xAccessor(data[0]))
+  console.log('xScale data[0]: ', xScale(8))
+
+  const binGenerator = d3.bin()
+      .domain(xScale.domain())
+      .value(xAccessor)
+      .thresholds(5)
+  const bins = binGenerator(data)
+  console.log(bins)
+
+  const yScale = d3.scaleLinear()
+    .domain([0, d3.max(bins, yAccessor)])
+    .range([dimensions.boundedHeight, 0])
+    .nice()
+
+  const binsGroup = bounds.append('g')
+
+  const binGroups = binsGroup.selectAll('g')
+    .data(bins)
+    .join('g')
+  console.log(binGroups)
+
+  const barPadding = 0.1
+
+  const barRects = binGroups.append('rect')
+      .attr('x', d => xScale(d.x0) + barPadding / 2)
+      .attr('y', d => yScale(yAccessor(d)))
+      .attr('width', d => d3.max([0, xScale(d.x1) - xScale(d.x0) - barPadding]))
+      .attr('height', d => dimensions.boundedHeight - yScale(yAccessor(d)))
+      .attr('fill', 'cornflowerblue')
+}
+
 drawLineChart()
+drawBars()
