@@ -131,7 +131,7 @@ async function drawBars() {
   const binGenerator = d3.bin()
       .domain(xScale.domain())
       .value(xAccessor)
-      .thresholds(5)
+      .thresholds(14)
   const bins = binGenerator(data)
   console.log(bins)
 
@@ -147,7 +147,7 @@ async function drawBars() {
     .join('g')
   console.log(binGroups)
 
-  const barPadding = 0.1
+  const barPadding = 1
 
   const barRects = binGroups.append('rect')
       .attr('x', d => xScale(d.x0) + barPadding / 2)
@@ -155,6 +155,30 @@ async function drawBars() {
       .attr('width', d => d3.max([0, xScale(d.x1) - xScale(d.x0) - barPadding]))
       .attr('height', d => dimensions.boundedHeight - yScale(yAccessor(d)))
       .attr('fill', 'cornflowerblue')
+
+  const barText = binGroups.filter(yAccessor)
+      .append('text')
+      .attr('x', d => xScale(d.x0) + (xScale(d.x1) - xScale(d.x0)) / 2)
+      .attr('y', d => yScale(yAccessor(d)) - 3)
+      .text(yAccessor)
+      .style('fill', '#666')
+      .style('font-size', '12px')
+      .style('font-family', 'sans-serif')
+      .style('text-anchor', 'middle')
+
+  const xAxisGenerator = d3.axisBottom()
+      .scale(xScale)
+  const xAxis = bounds.append('g')
+      .call(xAxisGenerator)
+      .style('transform', `translateY(${
+        dimensions.boundedHeight
+      }px)`)
+  const xAxisLabel = xAxis.append('text')
+      .attr('x', dimensions.boundedWidth / 2)
+      .attr('y', dimensions.margin.bottom - 10)
+      .attr('fill', 'black')
+      .style('font-size', '1.4em')
+      .text('num_colors')
 }
 
 drawLineChart()
