@@ -1,7 +1,9 @@
 {
   "name": "fullstack-d3",
   "version": "1.0.0",
-  "source": "src/index.html",
+  "source": [
+    "src/*.html"
+  ],
   "scripts": {
     "start": "parcel",
     "build": "parcel build"
@@ -21,6 +23,7 @@
     "d3": "^7.9.0"
   },
   "devDependencies": {
-    "parcel": "^2.14.2"
+    "parcel": "^2.14.2",
+    "parcel-reporter-static-files-copy": "^1.5.3"
   }
 }
