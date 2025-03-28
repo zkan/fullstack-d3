@@ -18,5 +18,8 @@
   "description": "",
   "dependencies": {
     "d3": "^7.9.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.14.2"
   }
 }
