@@ -6,7 +6,8 @@
   ],
   "scripts": {
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "d3": "^7.9.0"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "parcel": "^2.14.2",
     "parcel-reporter-static-files-copy": "^1.5.3"
   }
