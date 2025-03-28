@@ -4,13 +4,14 @@ async function drawLineChart() {
   const data = await d3.json('./my_weather_data.json')
   console.log(data)
 
-//   const yAccessor = d => d['temperatureMax']
-//   console.log(yAccessor(data[0]))
+  // Accessor functions to convert a single data point into metric value
+  const yAccessor = d => d['temperatureMax']
+  console.log(yAccessor(data[0]))
 
-//   const parseDate = d3.timeParse('%Y-%m-%d')
+  const parseDate = d3.timeParse('%Y-%m-%d')
 
-//   const xAccessor = d => parseDate(d['date'])
-//   console.log(xAccessor(data[0]))
+  const xAccessor = d => parseDate(d['date'])
+  console.log(xAccessor(data[0]))
 
 //   let dimensions = {
 //     width: window.innerWidth * 0.9,
