@@ -11,33 +11,33 @@ async function drawScatter() {
   console.log(yAccessor(data[0]))
   console.log(colorAccessor(data[0]))
 
-//   const width = d3.min([
-//     window.innerWidth * 0.9,
-//     window.innerHeight * 0.9,
-//   ])
-//   console.log(width)
-//   const dimensions = {
-//     width,
-//     height: width,
-//     margin: {
-//       top: 10,
-//       right: 10,
-//       bottom: 50,
-//       left: 50,
-//     }
-//   }
-//   dimensions.boundedWidth = dimensions.width
-//     - dimensions.margin.right
-//     - dimensions.margin.left
-//   dimensions.boundedHeight = dimensions.height
-//     - dimensions.margin.top
-//     - dimensions.margin.bottom
+  const width = d3.min([
+    window.innerWidth * 0.9,
+    window.innerHeight * 0.9,
+  ])
+  console.log(width)
+  const dimensions = {
+    width,
+    height: width,
+    margin: {
+      top: 10,
+      right: 10,
+      bottom: 50,
+      left: 50,
+    }
+  }
+  dimensions.boundedWidth = dimensions.width
+    - dimensions.margin.right
+    - dimensions.margin.left
+  dimensions.boundedHeight = dimensions.height
+    - dimensions.margin.top
+    - dimensions.margin.bottom
 
-//   const wrapper = d3.select('#wrapper-scatter')
-//     .append('svg')
-//       .attr('width', dimensions.width)
-//       .attr('height', dimensions.height)
-//       // .style('border', '1px solid')
+  const wrapper = d3.select("#wrapper")
+    .append("svg")
+      .attr("width", dimensions.width)
+      .attr("height", dimensions.height)
+    //   .style("border", "1px solid")
 
 //   const bounds = wrapper.append('g')
 //     .style('transform', `translate(${
