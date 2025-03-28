@@ -69,39 +69,37 @@ async function drawLineChart() {
       .domain(d3.extent(data, xAccessor))
       .range([0, dimensions.boundedWidth])
 
-//   // Draw data
+  // Draw data
+  const lineGenerator = d3.line()
+    .x(d => xScale(xAccessor(d)))
+    .y(d => yScale(yAccessor(d)))
+  console.log(lineGenerator)
 
-//   const lineGenerator = d3.line()
-//       .x(d => xScale(xAccessor(d)))
-//       .y(d => yScale(yAccessor(d)))
-//   console.log(lineGenerator)
+  const line = bounds.append("path")
+    .attr("d", lineGenerator(data))
+    .attr("fill", "none")
+    .attr("stroke", "#af9358")
+    .attr("stroke-width", 2)
 
-//   const line = bounds.append('path')
-//       .attr('d', lineGenerator(data))
-//       .attr('fill', 'none')
-//       .attr('stroke', '#af9358')
-//       .attr('stroke-width', 2)
+  // Draw peripherals
+  const yAxisGenerator = d3.axisLeft()
+    .scale(yScale)
 
-//   // Draw peripherals
+  // const yAxis = bounds.append('g')
+  // yAxisGenerator(yAxis)
 
-//   const yAxisGenerator = d3.axisLeft()
-//       .scale(yScale)
+  // Alternatively, code will be concised when use call
+  const yAxis = bounds.append("g")
+    .call(yAxisGenerator)
 
-//   // const yAxis = bounds.append('g')
-//   // yAxisGenerator(yAxis)
+  const xAxisGenerator = d3.axisBottom()
+    .scale(xScale)
 
-//   // Alternatively, code will be concised when use call
-//   const yAxis = bounds.append('g')
-//       .call(yAxisGenerator)
-
-//   const xAxisGenerator = d3.axisBottom()
-//       .scale(xScale)
-
-//   const xAxis = bounds.append('g')
-//       .call(xAxisGenerator)
-//       .style('transform', `translateY(${
-//         dimensions.boundedHeight
-//       }px)`)
+  const xAxis = bounds.append("g")
+    .call(xAxisGenerator)
+    .style("transform", `translateY(${
+      dimensions.boundedHeight
+    }px)`)
 }
 
 async function drawScatter() {
