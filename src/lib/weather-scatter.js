@@ -39,8 +39,8 @@ async function drawScatter() {
       .attr("height", dimensions.height)
     //   .style("border", "1px solid")
 
-  const bounds = wrapper.append('g')
-    .style('transform', `translate(${
+  const bounds = wrapper.append("g")
+    .style("transform", `translate(${
       dimensions.margin.left
     }px, ${
       dimensions.margin.top
