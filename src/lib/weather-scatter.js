@@ -39,36 +39,38 @@ async function drawScatter() {
       .attr("height", dimensions.height)
     //   .style("border", "1px solid")
 
-//   const bounds = wrapper.append('g')
-//     .style('transform', `translate(${
-//       dimensions.margin.left
-//     }px, ${
-//       dimensions.margin.top
-//     }px)`)
+  const bounds = wrapper.append('g')
+    .style('transform', `translate(${
+      dimensions.margin.left
+    }px, ${
+      dimensions.margin.top
+    }px)`)
 
-//   const xScale = d3.scaleLinear()
-//     .domain(d3.extent(data, xAccessor))
-//     .range([0, dimensions.boundedWidth])
-//     .nice()
-//   console.log(xScale.domain())
+  const xScale = d3.scaleLinear()
+    .domain(d3.extent(data, xAccessor))
+    .range([0, dimensions.boundedWidth])
+    .nice()
+  console.log(xScale.domain())
 
-//   const yScale = d3.scaleLinear()
-//     .domain(d3.extent(data, yAccessor))
-//     .range([dimensions.boundedHeight, 0])
-//     .nice()
-//   console.log(yScale.domain())
+  const yScale = d3.scaleLinear()
+    .domain(d3.extent(data, yAccessor))
+    .range([dimensions.boundedHeight, 0])
+    .nice()
+  console.log(yScale.domain())
 
-//   const colorScale = d3.scaleLinear()
-//     .domain(d3.extent(data, colorAccessor))
-//     .range(['skyblue', 'darkslategray'])
-//   console.log(colorScale.domain())
+  const colorScale = d3.scaleLinear()
+    .domain(d3.extent(data, colorAccessor))
+    .range(["skyblue", "darkslategray"])
+  console.log(colorScale.domain())
 
-//   // data.forEach(d => {
-//   //   bounds.append('circle')
-//   //     .attr('cx', xScale(xAccessor(d)))
-//   //     .attr('cy', yScale(yAccessor(d)))
-//   //     .attr('r', 5)
-//   // })
+  // Nested code is what we'd like to avoid -- hard to maintain
+  // No link between the data and the circle as well -- we can only erase it but cannot update it
+  // data.forEach(d => {
+  //   bounds.append('circle')
+  //     .attr('cx', xScale(xAccessor(d)))
+  //     .attr('cy', yScale(yAccessor(d)))
+  //     .attr('r', 5)
+  // })
 
 //   // const dots = bounds.selectAll('circle')
 //   //     .data(data).enter().append('circle')
