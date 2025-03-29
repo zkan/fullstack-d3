@@ -146,6 +146,7 @@ async function drawBars() {
       .attr("fill", "black")
       .style("font-size", "1.4em")
       .text(metric)
+      .style("text-transform", "capitalize")
       .attr("role", "presentation")
       .attr("aria-hidden", true)
   }
