@@ -53,7 +53,7 @@ async function drawBars() {
       .range([0, dimensions.boundedWidth])
       .nice()
 
-    const binsGenerator = d3.histogram()
+    const binsGenerator = d3.bin()
       .domain(xScale.domain())
       .value(metricAccessor)
       .thresholds(12)
